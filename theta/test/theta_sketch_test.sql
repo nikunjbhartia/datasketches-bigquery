@@ -82,7 +82,7 @@ drop table $BQ_DATASET.theta_sketch;
 # using defaults
 # expected 5
 select $BQ_DATASET.theta_sketch_get_estimate(
-  $BQ_DATASET.theta_sketch_union(
+  $BQ_DATASET.theta_sketch_union_base(
     (select $BQ_DATASET.theta_sketch_agg_string(str) from unnest(["a", "b", "c"]) as str),
     (select $BQ_DATASET.theta_sketch_agg_string(str) from unnest(["c", "d", "e"]) as str)
   )
@@ -103,7 +103,7 @@ select $BQ_DATASET.theta_sketch_get_estimate_seed(
 # using defaults
 # expected 1
 select $BQ_DATASET.theta_sketch_get_estimate(
-  $BQ_DATASET.theta_sketch_intersection(
+  $BQ_DATASET.theta_sketch_intersection_base(
     (select $BQ_DATASET.theta_sketch_agg_string(str) from unnest(["a", "b", "c"]) as str),
     (select $BQ_DATASET.theta_sketch_agg_string(str) from unnest(["c", "d", "e"]) as str)
   )
